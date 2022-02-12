@@ -21,4 +21,4 @@ const attendeeSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Attende', attendeeSchema);
+module.exports = mongoose.model('Attendee', attendeeSchema);
