@@ -1,4 +1,4 @@
-const { addAttendee } = require('./attendeesServices');
+const { addAttendee, addAttendeeTalk } = require('./attendeesServices');
 
 const postAttendee = async (req, res) => {
   try {
@@ -10,4 +10,15 @@ const postAttendee = async (req, res) => {
   }
 };
 
-module.exports = { postAttendee };
+const postAttendeeTalk = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { talkId } = req.body;
+    const message = await addAttendeeTalk(id, talkId);
+    res.status(200).send({ message });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+module.exports = { postAttendee, postAttendeeTalk };
