@@ -14,8 +14,10 @@ const postAttendeeTalk = async (req, res) => {
   try {
     const { id } = req.params;
     const { talkId } = req.body;
-    const message = await addAttendeeTalk(id, talkId);
-    res.status(200).send({ message });
+    await addAttendeeTalk(id, talkId);
+
+    /* Redirect to the talks route to add the attendee in the talk's list. 307 status code is added to use the original request's method, PUT, which is also what is needed at the talks route. Redirection usually has GET method, so 307 is necessary. */
+    res.redirect(307, `/api/talks/${talkId}?attendeeid=${id}`);
   } catch (error) {
     res.send(error);
   }

@@ -14,9 +14,6 @@ const addTalkAttendee = async (talkId, attendeeId) => {
     const talk = await Talk.findById(talkId);
     talk.attendees.push(attendeeId);
     await talk.save();
-
-    // Redirect back to the referer attendees route
-    res.redirect('back');
   } catch (error) {
     return error;
   }

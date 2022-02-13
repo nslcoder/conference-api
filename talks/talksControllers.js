@@ -14,8 +14,10 @@ const postTalkAttendee = async (req, res) => {
   try {
     const { id } = req.params;
     const { attendeeid } = req.query;
-    const message = await addTalkAttendee(id, attendeeid);
-    res.status(200).send({ message });
+    await addTalkAttendee(id, attendeeid);
+    res
+      .status(200)
+      .send({ message: "Attendee has been added to the talk's list" });
   } catch (error) {
     res.send(error);
   }
