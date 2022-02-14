@@ -1,4 +1,4 @@
-const { addTalk, addTalkAttendee } = require('./talksServices');
+const { addTalk, addTalkAttendee, eraseTalkById } = require('./talksServices');
 
 const postTalk = async (req, res) => {
   try {
@@ -23,4 +23,14 @@ const postTalkAttendee = async (req, res) => {
   }
 };
 
-module.exports = { postTalk, postTalkAttendee };
+const deleteTalkById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const message = await eraseTalkById(id);
+    res.status(200).send({ message });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+module.exports = { postTalk, postTalkAttendee, deleteTalkById };

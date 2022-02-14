@@ -19,4 +19,13 @@ const addTalkAttendee = async (talkId, attendeeId) => {
   }
 };
 
-module.exports = { addTalk, addTalkAttendee };
+const eraseTalkById = async (talkId) => {
+  try {
+    await Talk.findByIdAndDelete(talkId);
+    return 'Talk is deleted';
+  } catch (error) {
+    return error;
+  }
+};
+
+module.exports = { addTalk, addTalkAttendee, eraseTalkById };
